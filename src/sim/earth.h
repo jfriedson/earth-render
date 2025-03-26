@@ -25,30 +25,30 @@ private:
 
 public:
 	Earth() :
-		model("./res/models/earth/earth_highres.obj"),
+		model("./res/models/earth/earth.obj"),
 		position(glm::vec3(0.f, 0.f, 0.f)),
 		origin(glm::vec3(0.f, 0.f, 0.f)),
-		rotation(glm::vec3(0.f, 0.f, 23.5f)),
+		rotation(glm::vec3(axis_tilt, 0.f, 0.f)),
 		scale(glm::vec3(1.f))
 	{
 		diffuseTex.LoadTextureLinear("./res/textures/earth/diff_norelief_10k.jpg");
-		specularTex.LoadTextureNearest("./res/textures/earth/spec_10k.png");
-		dispTex.LoadTextureNearest("./res/textures/earth/disp_10k.jpg");
-		normTex.LoadTextureNearest("./res/textures/earth/normal_8k.jpg");
-		lightsTex.LoadTextureNearest("./res/textures/earth/lights_10k.jpg");
+		specularTex.LoadTextureLinear("./res/textures/earth/spec_10k.png");
+		dispTex.LoadTextureLinear("./res/textures/earth/disp_10k.jpg");
+		normTex.LoadTextureLinear("./res/textures/earth/normal_16k.jpg");
+		lightsTex.LoadTextureLinear("./res/textures/earth/lights_10k.jpg");
 		
 		setModelMatrix();
 	}
-	~Earth() {}
+
+	~Earth()
+	{
+	}
 
 	void rotate(glm::vec3 rotate)
 	{
 		rotation += rotate;
 
-		if (rotation.x < -89.f)
-			rotation.x = -89.f;
-		else if (rotation.x > 89.f)
-			rotation.x = 89.f;
+		rotation.x = glm::max(-89.f, glm::min(rotation.x, 89.f));
 
 		if (rotation.y < 0.f)
 			rotation.y += 360.f;
@@ -58,7 +58,6 @@ public:
 
 	void setModelMatrix()
 	{
-		// to make the rotation happen properly, rotate y before z
 		glm::mat4 ModelMatrix = glm::mat4(1.f);
 		ModelMatrix = glm::translate(ModelMatrix, origin);
 		ModelMatrix = glm::rotate(ModelMatrix, glm::radians(rotation.z), glm::vec3(0.f, 0.f, 1.f));

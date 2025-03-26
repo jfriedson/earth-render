@@ -22,12 +22,23 @@ void Camera::rotate(glm::vec2 delta)
 {
 	this->yaw += delta.x;
 	this->pitch += delta.y;
+
+	if (pitch > 89.f)
+		pitch = 89.f;
+	if (pitch < -89.f)
+		pitch = -89.f;
+
+	if (yaw >= 360.f)
+		yaw -= 360.f;
+	if (yaw < 0.f)
+		yaw += 360.f;
 }
 
 
 void Camera::keyControl(bool* keys, GLfloat deltaTime)
 {
-	/*if (keys[GLFW_KEY_Q] == true)
+	/*
+	if (keys[GLFW_KEY_Q] == true)
 	{
 		radius -= 10.f * deltaTime;
 
@@ -41,7 +52,8 @@ void Camera::keyControl(bool* keys, GLfloat deltaTime)
 
 		if (radius > 20.f)
 			radius = 20.f;
-	}*/
+	}
+	*/
 
 	updateCameraVectors();
 }
@@ -78,11 +90,11 @@ glm::mat4 Camera::calculateViewMatrix()
 }
 
 
-glm::vec3 Camera::getCameraPosition()
+glm::vec3 Camera::getPosition()
 {
 	return position;
 }
-glm::vec3 Camera::getCameraDirection()
+glm::vec3 Camera::getDirection()
 {
 	return glm::normalize(direction);
 }

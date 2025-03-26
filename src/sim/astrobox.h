@@ -15,8 +15,10 @@ public:
 	{
 		texture.LoadTextureLinear("./res/textures/astrobox/starfield.jpg");
 	}
-	~Astrobox() {}
 
+	~Astrobox()
+	{
+	}
 
 	void render(Shader* shader)
 	{

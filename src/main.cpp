@@ -96,7 +96,7 @@ int main()
 		}
 	});
 
-	// Poll input and update simulation every millisecond
+	// Poll input and update simulation
 	while (graphics.windowAlive())
 	{
 		graphics.updateInput();
@@ -120,8 +120,8 @@ int main()
 		if (graphics.keys()[GLFW_KEY_DOWN])
 			earth.rotate(glm::vec3(0.5f, 0.f, 0.f));*/
 
-		//earth.rotate(glm::vec3(0.f, 0.1f, 0.f));
-		//clouds.rotate(.092f);
+		earth.rotate(glm::vec3(0.f, 0.002f, 0.f));
+		clouds.rotate(.003f);
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 	}

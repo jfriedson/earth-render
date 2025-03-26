@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 #include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
@@ -20,8 +21,8 @@ public:
 	void keyControl(bool* keys, GLfloat deltaTime);
 	void mouseControl(GLfloat xChange, GLfloat yChange, GLfloat scroll);
 
-	glm::vec3 getCameraPosition();
-	glm::vec3 getCameraDirection();
+	glm::vec3 getPosition();
+	glm::vec3 getDirection();
 
 	glm::mat4 calculateViewMatrix();
 

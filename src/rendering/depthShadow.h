@@ -10,7 +10,7 @@ private:
 	unsigned int depthMapTex;
 	const unsigned int SHADOW_WIDTH = 4096, SHADOW_HEIGHT = 4096;
 
-	float near_plane = 1.0f, far_plane = 12.f;
+	float near_plane = 0.f, far_plane = 24.f;
 	glm::mat4 lightProjection;
 
 	glm::mat4 lightView;
@@ -21,8 +21,8 @@ public:
 	depthShadow();
 	~depthShadow();
 
-	void bindFBO(Shader *shader);
-	void updateUniforms(Shader* shader);
+	void bindFBO(Shader *shader) const;
+	void updateUniforms(Shader* shader) const;
 
 	unsigned int getTexID() { return depthMapTex; };
 };

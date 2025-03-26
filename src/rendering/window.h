@@ -35,7 +35,7 @@ private:
 	GLint width, height;
 	GLint bufferWidth, bufferHeight;
 
-	bool keys[1024];
+	bool keys[512];
 
 	GLfloat last_x;
 	GLfloat last_y;

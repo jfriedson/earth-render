@@ -24,7 +24,7 @@ bool Texture::LoadTextureNearest(const char* fileLoc)
 
 	if (texData == nullptr || (bitDepth != 1 && bitDepth != 3 && bitDepth != 4))
 	{
-		std::cout << "couldn't load " << fileLoc << std::endl;
+		std::cout << "couldn't load " << fileLoc << "\n";
 
 		texData = stbi_load("res/textures/tile_diff.jpg", &width, &height, &bitDepth, 0);
 	}
@@ -36,7 +36,7 @@ bool Texture::LoadTextureNearest(const char* fileLoc)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	//glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY, 8.f);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY, 8.f);
 
 	if (bitDepth == 4)
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
@@ -64,7 +64,7 @@ bool Texture::LoadTextureNearest(const aiTexture* texture)
 
 	if (texData == nullptr || (bitDepth != 1 && bitDepth != 3 && bitDepth != 4))
 	{
-		std::cout << "couldn't load " << texture->mFilename.C_Str() << std::endl;
+		std::cout << "couldn't load " << texture->mFilename.C_Str() << "\n";
 
 		texData = stbi_load("res/textures/tile_diff.jpg", &width, &height, &bitDepth, 0);
 	}
@@ -101,7 +101,7 @@ bool Texture::LoadTextureLinear(const char* fileLoc)
 
 	if (texData == nullptr || (bitDepth != 1 && bitDepth != 3 && bitDepth != 4))
 	{
-		std::cout << "couldn't load " << fileLoc << std::endl;
+		std::cout << "couldn't load " << fileLoc << "\n";
 
 		texData = stbi_load("res/textures/tile_diff.jpg", &width, &height, &bitDepth, 0);
 	}
@@ -141,7 +141,7 @@ bool Texture::LoadTextureLinear(const aiTexture* texture)
 
 	if (texData == nullptr || (bitDepth != 1 && bitDepth != 3 && bitDepth != 4))
 	{
-		std::cout << "couldn't load " << texture->mFilename.C_Str() << std::endl;
+		std::cout << "couldn't load " << texture->mFilename.C_Str() << "\n";
 
 		texData = stbi_load("res/textures/tile_diff.jpg", &width, &height, &bitDepth, 0);
 	}

@@ -26,7 +26,7 @@ public:
 		model("./res/models/clouds/clouds.obj"),
 		position(glm::vec3(0.f, 0.f, 0.f)),
 		origin(glm::vec3(0.f, 0.f, 0.f)),
-		rotation(glm::vec3(0.f, 0.f, 23.5f)),
+		rotation(glm::vec3(axis_tilt, 0.f, 0.f)),
 		scale(glm::vec3(1.01f))
 	{
 		cloudsTex.LoadTextureLinear("./res/textures/earth/clouds_8k.jpg");
@@ -35,7 +35,10 @@ public:
 
 		setModelMatrix();
 	}
-	~Clouds() {}
+
+	~Clouds()
+	{
+	}
 
 	void rotate(float rotate)
 	{
@@ -55,7 +58,6 @@ public:
 
 	void setModelMatrix()
 	{
-		// To make the earth rotate properly, rotate y before z
 		glm::mat4 ModelMatrix = glm::mat4(1.f);
 		ModelMatrix = glm::translate(ModelMatrix, origin);
 		ModelMatrix = glm::rotate(ModelMatrix, glm::radians(rotation.x), glm::vec3(1.f, 0.f, 0.f));

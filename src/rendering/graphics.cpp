@@ -1,5 +1,8 @@
 #include "graphics.h"
 
+#include <vector>
+
+
 Graphics::Graphics(
 	const char* title,
 	Camera* camera,
@@ -41,9 +44,7 @@ void Graphics::updateInput()
 	glfwPollEvents();
 
 	if (this->window.getKeys()[GLFW_KEY_ESCAPE] == true)
-	{
 		this->window.closeWindow();
-	}
 
 	curTime = glfwGetTime();
 	deltaTime = curTime - lastTime;
@@ -72,6 +73,6 @@ void Graphics::updateUniforms(Shader* shader)
 		);
 	}
 	shader->setMat4fv(this->ProjectionMatrix, "ProjectionMatrix");
-	shader->setVec3f(this->camera->getCameraPosition(), "camPos");
+	shader->setVec3f(this->camera->getPosition(), "camPos");
 	shader->setVec3f(glm::vec3(1.f, 0.f, 0.f), "lightDir");
 }

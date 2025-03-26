@@ -70,10 +70,10 @@ Window::Window(const char* app_name, GLint window_w, GLint window_h, GLint GL_VE
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	glEnable(GL_MULTISAMPLE);  // MSAA
+	glEnable(GL_MULTISAMPLE);
 	//glEnable(GL_FRAMEBUFFER_SRGB);  // Gamma correction
 
-	// oGL debug callack
+	// oGL debug msg callack
 	int flags;
 	glGetIntegerv(GL_CONTEXT_FLAGS, &flags);
 	if (flags & GL_CONTEXT_FLAG_DEBUG_BIT)
@@ -141,7 +141,7 @@ void Window::handleKeyboard(GLFWwindow* window, int key, int code, int action, i
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	}
 
-	if (key >= 0 && key < 1024)
+	if (key >= 0 && key < sizeof(keys))
 	{
 		if (action == GLFW_PRESS)
 		{
